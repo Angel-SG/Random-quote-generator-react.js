@@ -28,7 +28,7 @@ const RandomQuote = () => {
   };
 
   const getNewColor = () => {
-    const colours = [
+    const colors = [
       "#16a085",
       "#27ae60",
       "#2c3e50",
@@ -43,8 +43,8 @@ const RandomQuote = () => {
       "#73A857"
     ];
 
-    const colourNum = Math.floor(Math.random() * colours.length);
-    const randomColor = colours[colourNum];
+    const colorNum = Math.floor(Math.random() * colors.length);
+    const randomColor = colors[colorNum];
 
     setColor(randomColor);
   };
