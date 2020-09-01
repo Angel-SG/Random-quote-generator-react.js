@@ -1,0 +1,60 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+
+h1 {
+  margin-bottom: 30px;
+  color: white;
+}
+
+h2,
+h4 {
+  transition: color 0.4s;
+}
+
+#quote-box {
+  background-color: white;
+  max-width: 400px;
+  margin: 0 auto;
+  margin-bottom: 200px;
+  padding: 40px;
+  transition: background-color 0.5s;
+}
+
+.background {
+  height: 100vh;
+  width: 100wh;
+  padding: 60px;
+  margin: 0;
+  transition: background-color 0.3s;
+}
+
+button {
+  background: transparent;
+  padding: 10px 20px;
+  border: 2px solid black;
+  margin-top: 40px;
+  font-weight: 700;
+  font-size: 18px;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+#buttons {
+  position: relative;
+  a {
+    span {
+      svg {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 35px;
+        height: 35px;
+      }
+    }
+  }
+}
