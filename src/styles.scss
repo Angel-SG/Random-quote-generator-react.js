@@ -43,7 +43,7 @@ h4 {
     background-color: white;
     margin-bottom: 200px;
     width:100%;
-    max-width: 400px;
+    max-width: 470px;
     padding: 40px;
     border-radius: 6px;
     transition: background-color 0.5s;
@@ -54,7 +54,7 @@ h4 {
     .new-quote-btn {
       background: transparent;
       padding: 10px 20px;
-      margin-top: 40px;
+      margin-top: 60px;
       font-weight: 700;
       font-size: 18px;
       border: 2px solid transparent;
@@ -65,6 +65,7 @@ h4 {
 
       &:focus {
         outline-color: transparent;
+        outline-width: 0;
       }
     }
     
