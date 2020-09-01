@@ -49,11 +49,6 @@ const RandomQuote = () => {
     setColor(randomColor);
   };
 
-  const getNewQuote = () => {
-    getQuote();
-    getNewColor();
-  };
-
   const textStyle = {
     color: `${color}`,
     borderColor: `${color}`,
@@ -89,7 +84,10 @@ const RandomQuote = () => {
           <button
             id="new-quote"
             className="new-quote-btn"
-            onClick={getNewQuote()}
+            onClick={() => {
+              getQuote();
+              getNewColor();
+            }}
             style={textStyle}
           >
             New Quote
