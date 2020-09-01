@@ -5,6 +5,12 @@ body {
   overflow: hidden;
 }
 
+button {
+  -webkit-appearance: none;
+  border: none;
+  margin: 0;
+}
+
 .App {
   font-family: sans-serif;
   text-align: center;
@@ -45,16 +51,20 @@ h4 {
     -moz-box-shadow: 1px -1px 50px -8px rgba(107,107,107,0.57);
     box-shadow: 1px -1px 50px -8px rgba(107,107,107,0.57);
 
-    button {
+    .new-quote-btn {
       background: transparent;
       padding: 10px 20px;
-      border: 2px solid black;
       margin-top: 40px;
       font-weight: 700;
       font-size: 18px;
+      border: 2px solid transparent;
 
       &:hover {
         cursor: pointer;
+      }
+
+      &:focus {
+        outline-color: transparent;
       }
     }
     

@@ -1,39 +1,33 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 
-class RandomQuote extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      author: "",
-      quote: "",
-      colour: "#395697"
-    };
-  }
+const RandomQuote = () => {
+  const [author, setAuthor] = useState("");
+  const [quote, setQuote] = useState("");
+  const [color, setColor] = useState("#395697");
 
-  componentDidMount() {
-    this.getQuote();
-  }
+  useEffect(() => {
+    // Get New quote
+    getQuote();
+  }, []);
 
-  getQuote() {
+  const getQuote = () => {
     let url =
       "https://gist.githubusercontent.com/camperbot/5a022b72e96c4c9585c32bf6a75f62d9/raw/e3c6895ce42069f0ee7e991229064f167fe8ccdc/quotes.json";
 
-    axios.get(url).then(res => {
+    axios.get(url).then((res) => {
       let data = res.data.quotes;
       let quoteNum = Math.floor(Math.random() * data.length);
       let randomQuote = data[quoteNum];
 
-      this.setState({
-        quote: randomQuote["quote"],
-        author: randomQuote["author"]
-      });
+      setAuthor(randomQuote["author"]);
+      setQuote(randomQuote["quote"]);
     });
-  }
+  };
 
-  getNewColor = () => {
+  const getNewColor = () => {
     const colours = [
       "#16a085",
       "#27ae60",
@@ -50,65 +44,60 @@ class RandomQuote extends React.Component {
     ];
 
     const colourNum = Math.floor(Math.random() * colours.length);
-    const randomColour = colours[colourNum];
+    const randomColor = colours[colourNum];
 
-    this.setState({
-      colour: randomColour
-    });
+    setColor(randomColor);
   };
 
-  getNewQuote = () => {
-    this.getQuote();
-    this.getNewColor();
+  const getNewQuote = () => {
+    getQuote();
+    getNewColor();
   };
 
-  render() {
-    const { quote, author, colour } = this.state;
+  const textStyle = {
+    color: `${color}`,
+    borderColor: `${color}`,
+    borderWidth: "2px"
+  };
 
-    const textStyle = {
-      color: `${colour}`,
-      borderColor: `${colour}`
-    };
+  const backgroundStyle = {
+    backgroundColor: `${color}`
+  };
 
-    const backgroundStyle = {
-      backgroundColor: `${colour}`
-    };
-
-    return (
-      <div className="background" style={backgroundStyle}>
-        <h1>Random Quote Machine</h1>
-        <div id="quote-box">
-          <h2 id="text" style={textStyle}>
-            {quote}
-          </h2>
-          <h4 id="author" style={textStyle}>
-            {author}
-          </h4>
-          <div id="buttons">
-            <a
-              id="tweet-quote"
-              href={`https://twitter.com/intent/tweet?text=${quote} ${author}`}
-              target="_blank"
-              title="Post this quote on twitter!"
-              rel="noopener noreferrer"
-            >
-              <span>
-                <FontAwesomeIcon icon={faTwitter} style={textStyle} />
-              </span>
-            </a>
-            <button
-              id="new-quote"
-              className="buttons"
-              onClick={this.getNewQuote}
-              style={textStyle}
-            >
-              New Quote
-            </button>
-          </div>
+  return (
+    <div className="background" style={backgroundStyle}>
+      <h1>Random Quote Generator</h1>
+      <div id="quote-box">
+        <h2 id="text" style={textStyle}>
+          {quote}
+        </h2>
+        <h4 id="author" style={textStyle}>
+          {author}
+        </h4>
+        <div id="buttons">
+          <a
+            id="tweet-quote"
+            href={`https://twitter.com/intent/tweet?text=${quote} ${author}`}
+            target="_blank"
+            title="Post this quote on twitter!"
+            rel="noopener noreferrer"
+          >
+            <span>
+              <FontAwesomeIcon icon={faTwitter} style={textStyle} />
+            </span>
+          </a>
+          <button
+            id="new-quote"
+            className="new-quote-btn"
+            onClick={getNewQuote()}
+            style={textStyle}
+          >
+            New Quote
+          </button>
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default RandomQuote;
